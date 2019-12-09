@@ -1,7 +1,7 @@
 package com.skilldistillery.cards.blackjack;
 
 public class BlackJackApp {
-	
+
 	BlackJackTable newTable = new BlackJackTable();
 
 	public static void main(String[] args) {
@@ -13,7 +13,6 @@ public class BlackJackApp {
 	private void startPlaying() {
 		newTable.startDealing();
 
-		
 	}
 
 }

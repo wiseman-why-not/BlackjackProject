@@ -9,11 +9,11 @@ public class BlackJackTable {
 	BJPlayer player = new BJPlayer();
 	Deck deck = new Deck();
 	Scanner kb = new Scanner(System.in);
-	
+
 	public BlackJackTable() {
-		//startDealing();
+		
 	}
-	
+
 	public void startDealing() {
 		dealer.dealCardToPlayer(player);
 		dealer.dealCardToDealer(dealer.getDeck().dealCard());
@@ -23,16 +23,16 @@ public class BlackJackTable {
 		System.out.println();
 		player.getHand();
 		System.out.println("Your total is " + player.getPlayerHand().getHandValue());
-		
-		if( dealer.dealerHand.isBlackjack() ) {
+
+		if (dealer.dealerHand.isBlackjack()) {
 			System.out.println("You lost, dealer has a black jack");
 			System.exit(0);
-		} 
-		if (player.playerHand.isBlackjack() ) {
+		}
+		if (player.playerHand.isBlackjack()) {
 			System.out.println("You won!!!!!, black jack");
 			System.exit(0);
 		}
-		
+
 		boolean keepHitting = false;
 		do {
 			System.out.println();
@@ -43,43 +43,43 @@ public class BlackJackTable {
 				player.getHand();
 				System.out.println("Your total is " + player.getPlayerHand().getHandValue());
 				keepHitting = player.getPlayerHand().isBust();
-				if(player.getPlayerHand().isBlackjack()) {
+				if (player.getPlayerHand().isBlackjack()) {
 					System.out.println("you got blackjack, you won");
 					System.exit(0);
 				}
-				if(keepHitting == false) {
+				if (keepHitting == false) {
 					System.exit(0);
 				}
 			} else {
 				dealer.showDealerFullHand();
 				System.out.println("dealer's total " + dealer.getDealerHand().getHandValue());
-				
-				while(dealer.getDealerHand().getHandValue() <= 17) {
+
+				while (dealer.getDealerHand().getHandValue() <= 17) {
 					dealer.dealCardToDealer(dealer.getDeck().dealCard());
 					dealer.showDealerFullHand();
 					System.out.println("dealer's total " + dealer.getDealerHand().getHandValue());
 					keepHitting = dealer.getDealerHand().isBust();
-				
+
 				}
-				
+
 				keepHitting = player.dontAskForAnotherCard();
 			}
-		} while(keepHitting);
-		
+		} while (keepHitting);
+
 		boolean checkIfDealerBusted;
 		checkIfDealerBusted = dealer.getDealerHand().isBust();
-		
-		if(player.getPlayerHand().getHandValue() == dealer.getDealerHand().getHandValue()) {
+
+		if (player.getPlayerHand().getHandValue() == dealer.getDealerHand().getHandValue()) {
 			System.out.println("you tied");
 		} else if (player.getPlayerHand().getHandValue() > dealer.getDealerHand().getHandValue()) {
 			System.out.println("you won");
-		} else if (checkIfDealerBusted == true && player.getPlayerHand().getHandValue() < dealer.getDealerHand().getHandValue() ){
+		} else if (checkIfDealerBusted == true
+				&& player.getPlayerHand().getHandValue() < dealer.getDealerHand().getHandValue()) {
 			System.out.println("you lost, dealer won");
 		} else {
 			System.out.println("you won");
 		}
-		
+
 	}
-	
-	
+
 }
